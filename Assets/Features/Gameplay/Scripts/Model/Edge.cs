@@ -13,7 +13,7 @@
         private int _rank = 1;
         private Vector3Int _start = Vector3Int.zero;
         private Vector3Int _dirVector = Vector3Int.zero;
-        private List<Line> _emittedLines = new();
+        private List<AbstractBallsContainer> _emittedLines = new();
 
         #endregion
 
@@ -28,7 +28,7 @@
             _start = start;
             _rank = rank;
             _dirVector = dirVector;
-            _emittedLines = new List<Line>(_rank);
+            _emittedLines = new List<AbstractBallsContainer>(_rank);
             for (int i = 0; i < _rank; ++i)
             {
                 _emittedLines.Add(
@@ -46,13 +46,20 @@
             {
                 IsFull = true;
 
-                foreach (Line line in _emittedLines)
+                foreach (AbstractBallsContainer line in _emittedLines)
                 {
                     line.TryAddBall(ball);
                     UpdateFilledStatus(line);
                     UpdateWinner(line);
                 }
             }
+        }
+
+        public override void Reset()
+        {
+            _emittedLines.ForEach(x => x.Reset());
+            Winner = BallType.None;
+            IsFull = false;
         }
 
         #endregion

@@ -67,6 +67,13 @@
             }
         }
 
+        public override void Reset()
+        {
+            _ballInfos.Clear();
+            Winner = BallType.None;
+            IsFull = false;
+        }
+
         protected override void UpdateWinner(AbstractBallsContainer ballsContainer)
         {
             if (IsFull)

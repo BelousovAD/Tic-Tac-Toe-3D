@@ -49,6 +49,11 @@
         /// <param name="ball">Добавляемый шар</param>
         public abstract void TryAddBall(BallModel ball);
 
+        /// <summary>
+        /// Очистить контейнер от шаров и сбросить свойства
+        /// </summary>
+        public abstract void Reset();
+
         protected virtual void UpdateFilledStatus(AbstractBallsContainer ballsContainer)
         {
             if (!ballsContainer.IsFull)

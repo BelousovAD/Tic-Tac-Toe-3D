@@ -14,7 +14,7 @@
         private Vector3Int _start = Vector3Int.zero;
         private Vector3Int _firstDirVector = Vector3Int.zero;
         private Vector3Int _secondDirVector = Vector3Int.zero;
-        private List<List<Line>> _emittedLines = new();
+        private List<List<AbstractBallsContainer>> _emittedLines = new();
 
         #endregion
 
@@ -31,11 +31,11 @@
             _start = start;
             _firstDirVector = firstDirVector;
             _secondDirVector = secondDirVecor;
-            _emittedLines = new List<List<Line>>(_rank);
+            _emittedLines = new List<List<AbstractBallsContainer>>(_rank);
 
             for (int i = 0; i < _rank; ++i)
             {
-                _emittedLines.Add(new List<Line>(_rank));
+                _emittedLines.Add(new List<AbstractBallsContainer>(_rank));
 
                 for (int j = 0; j < _rank; ++j)
                 {
@@ -55,9 +55,9 @@
             {
                 IsFull = true;
 
-                foreach (List<Line> row in _emittedLines)
+                foreach (List<AbstractBallsContainer> row in _emittedLines)
                 {
-                    foreach (Line line in row)
+                    foreach (AbstractBallsContainer line in row)
                     {
                         line.TryAddBall(ball);
                         UpdateFilledStatus(line);
@@ -65,6 +65,17 @@
                     }
                 }
             }
+        }
+
+        public override void Reset()
+        {
+            foreach (List<AbstractBallsContainer> row in _emittedLines)
+            {
+                row.ForEach(x => x.Reset());
+            }
+
+            Winner = BallType.None;
+            IsFull = false;
         }
 
         #endregion

@@ -91,6 +91,15 @@
             }
         }
 
+        public override void Reset()
+        {
+            _planes.ForEach(x => x.Reset());
+            _edges.ForEach(x => x.Reset());
+            _emittedLinesFromVertices.ForEach(x => x.Reset());
+            Winner = BallType.None;
+            IsFull = false;
+        }
+
         protected virtual void TryAddBallIntoContainersList(List<AbstractBallsContainer> ballsContainers, BallModel ball)
         {
             foreach (AbstractBallsContainer container in ballsContainers)
