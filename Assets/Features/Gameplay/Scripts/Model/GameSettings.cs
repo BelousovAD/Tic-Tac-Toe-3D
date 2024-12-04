@@ -1,4 +1,6 @@
-﻿namespace TicTacToe3D.Features.Gameplay
+﻿using UnityEngine;
+
+namespace TicTacToe3D.Features.Gameplay
 {
     /// <summary>
     /// Настройки игры
@@ -24,5 +26,15 @@
             set => _ballColor = value;
         }
         private BallColor _ballColor = BallColor.White;
+
+        /// <summary>
+        /// Ранг куба игрового поля
+        /// </summary>
+        public int Rank
+        {
+            get => _rank;
+            set => _rank = value <= 0 ? 1 : value;
+        }
+        private int _rank = 3;
     }
 }
