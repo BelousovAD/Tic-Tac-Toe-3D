@@ -67,7 +67,7 @@
             }
         }
 
-        public override void Reset()
+        public override void ResetToDefault()
         {
             _ballInfos.Clear();
             Winner = BallType.None;

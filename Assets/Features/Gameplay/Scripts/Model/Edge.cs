@@ -55,9 +55,9 @@
             }
         }
 
-        public override void Reset()
+        public override void ResetToDefault()
         {
-            _emittedLines.ForEach(x => x.Reset());
+            _emittedLines.ForEach(x => x.ResetToDefault());
             Winner = BallType.None;
             IsFull = false;
         }

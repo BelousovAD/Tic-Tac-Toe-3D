@@ -67,11 +67,11 @@
             }
         }
 
-        public override void Reset()
+        public override void ResetToDefault()
         {
             foreach (List<AbstractBallsContainer> row in _emittedLines)
             {
-                row.ForEach(x => x.Reset());
+                row.ForEach(x => x.ResetToDefault());
             }
 
             Winner = BallType.None;

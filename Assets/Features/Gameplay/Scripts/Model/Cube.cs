@@ -91,11 +91,11 @@
             }
         }
 
-        public override void Reset()
+        public override void ResetToDefault()
         {
-            _planes.ForEach(x => x.Reset());
-            _edges.ForEach(x => x.Reset());
-            _emittedLinesFromVertices.ForEach(x => x.Reset());
+            _planes.ForEach(x => x.ResetToDefault());
+            _edges.ForEach(x => x.ResetToDefault());
+            _emittedLinesFromVertices.ForEach(x => x.ResetToDefault());
             Winner = BallType.None;
             IsFull = false;
         }

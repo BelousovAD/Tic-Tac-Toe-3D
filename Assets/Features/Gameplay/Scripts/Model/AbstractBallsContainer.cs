@@ -52,7 +52,7 @@
         /// <summary>
         /// Очистить контейнер от шаров и сбросить свойства
         /// </summary>
-        public abstract void Reset();
+        public abstract void ResetToDefault();
 
         protected virtual void UpdateFilledStatus(AbstractBallsContainer ballsContainer)
         {
