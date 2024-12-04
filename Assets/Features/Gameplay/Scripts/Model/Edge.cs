@@ -40,7 +40,7 @@
             }
         }
 
-        public override void TryAddBall(BallModel ball)
+        public override void TryAddBall(Ball ball)
         {
             if (!IsFull && Winner == BallType.None)
             {

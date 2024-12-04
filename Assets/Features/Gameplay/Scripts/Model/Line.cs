@@ -43,7 +43,7 @@
         private int _rank = 1;
         private Vector3Int _point = Vector3Int.zero;
         private Vector3Int _dirVector = Vector3Int.zero;
-        private List<BallModel> _ballInfos = new();
+        private List<Ball> _ballInfos = new();
 
         #endregion
 
@@ -57,7 +57,7 @@
             _ballInfos = new(_rank);
         }
 
-        public override void TryAddBall(BallModel ball)
+        public override void TryAddBall(Ball ball)
         {
             if (!IsFull && IsBallBelongingToLine(ball))
             {
@@ -80,7 +80,7 @@
             {
                 BallType ballType = _ballInfos[0].BallType;
 
-                foreach (BallModel ball in _ballInfos)
+                foreach (Ball ball in _ballInfos)
                 {
                     if (ball.BallType != ballType)
                     {
@@ -95,7 +95,7 @@
         protected override void UpdateFilledStatus(AbstractBallsContainer ballsContainer)
             => IsFull = _ballInfos.Count == _rank;
 
-        protected virtual bool IsBallBelongingToLine(BallModel ball)
+        protected virtual bool IsBallBelongingToLine(Ball ball)
             => Vector3.Cross(ball.Position - _point, _dirVector) == Vector3.zero;
 
         #endregion

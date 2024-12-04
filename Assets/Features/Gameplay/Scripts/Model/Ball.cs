@@ -5,7 +5,7 @@
     /// <summary>
     /// Шар
     /// </summary>
-    public class BallModel
+    public class Ball
     {
         /// <summary>
         /// Тип шара
@@ -19,7 +19,7 @@
         public Vector3Int Position => _position;
         private Vector3Int _position = Vector3Int.zero;
 
-        public BallModel(BallType ballType, Vector3Int position)
+        public Ball(BallType ballType, Vector3Int position)
         {
             _ballType = ballType;
             _position = position;

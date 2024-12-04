@@ -79,7 +79,7 @@
                 );
         }
 
-        public override void TryAddBall(BallModel ball)
+        public override void TryAddBall(Ball ball)
         {
             if (!IsFull && Winner == BallType.None)
             {
@@ -100,7 +100,7 @@
             IsFull = false;
         }
 
-        protected virtual void TryAddBallIntoContainersList(List<AbstractBallsContainer> ballsContainers, BallModel ball)
+        protected virtual void TryAddBallIntoContainersList(List<AbstractBallsContainer> ballsContainers, Ball ball)
         {
             foreach (AbstractBallsContainer container in ballsContainers)
             {

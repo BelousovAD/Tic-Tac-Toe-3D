@@ -47,7 +47,7 @@
         /// Пытается добавить шар в контейнер
         /// </summary>
         /// <param name="ball">Добавляемый шар</param>
-        public abstract void TryAddBall(BallModel ball);
+        public abstract void TryAddBall(Ball ball);
 
         /// <summary>
         /// Очистить контейнер от шаров и сбросить свойства
