@@ -46,7 +46,6 @@
         }
         protected bool isVisible = true;
 
-        [Inject]
         protected GameSettings gameSettings = default;
 
         #endregion
@@ -58,7 +57,7 @@
         /// </summary>
         public virtual void IncreaseNextPosition()
         {
-            if (NextBallPosition.z < gameSettings.Rank)
+            if (NextBallPosition.z < gameSettings.Rank - 1)
             {
                 ++_nextBallPosition.z;
             }
@@ -68,16 +67,12 @@
             }
         }
 
-        /// <summary>
-        /// Сбросить значения свойств
-        /// </summary>
-        public virtual void ResetToDefault()
+        [Inject]
+        protected virtual void Construct(GameSettings _gameSettings)
         {
-            _nextBallPosition.z = 0;
-            IsVisible = true;
+            gameSettings = _gameSettings;
+            _nextBallPosition = new(position.x, position.y, 0);
         }
-
-        protected virtual void Awake() => _nextBallPosition = new(position.x, position.y, 0);
 
         #endregion
     }
