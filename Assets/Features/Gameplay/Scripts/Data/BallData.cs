@@ -18,8 +18,8 @@
         /// <summary>
         /// Префаб шара
         /// </summary>
-        public GameObject Prefab => _prefab;
+        public BallView Prefab => _prefab;
         [SerializeField]
-        private GameObject _prefab = default;
+        private BallView _prefab = default;
     }
 }
