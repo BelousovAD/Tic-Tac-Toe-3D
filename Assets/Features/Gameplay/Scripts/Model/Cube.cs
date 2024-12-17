@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using UnityEngine;
+    using Zenject;
 
     /// <summary>
     /// Куб
@@ -18,7 +19,7 @@
 
         #region Properties
 
-        private int _rank = 1;
+        private GameSettings _gameSettings = default;
         private List<AbstractBallsContainer> _planes = new(PLANES_NUMBER);
         private List<AbstractBallsContainer> _edges = new(EDGES_NUMBER);
         private List<AbstractBallsContainer> _emittedLinesFromVertices = new(VERTICES_NUMBER);
@@ -27,9 +28,10 @@
 
         #region Methods
 
-        public Cube(int rank)
+        [Inject]
+        public Cube(GameSettings gameSettings)
         {
-            _rank = rank;
+            _gameSettings = gameSettings;
             Vector3Int first = Vector3Int.right;
             Vector3Int second = Vector3Int.up;
             Vector3Int third = Vector3Int.forward;
@@ -42,27 +44,27 @@
                         first,
                         second,
                         third,
-                        _rank)
+                        _gameSettings.Rank)
                     );
                 _edges.Add(
                     new Edge(
                         Vector3Int.zero,
                         first,
                         third + second,
-                        _rank)
+                        _gameSettings.Rank)
                     );
                 _edges.Add(
                     new Edge(
-                        Vector3Int.zero + second * (_rank - 1),
+                        Vector3Int.zero + second * (_gameSettings.Rank - 1),
                         first,
                         third - second,
-                        _rank)
+                        _gameSettings.Rank)
                     );
                 _emittedLinesFromVertices.Add(
                     new Line(
-                        first * (_rank - 1),
+                        first * (_gameSettings.Rank - 1),
                         third + second - first,
-                        _rank)
+                        _gameSettings.Rank)
                     );
 
                 tmp = first;
@@ -75,39 +77,45 @@
                 new Line(
                     Vector3Int.zero,
                     third + second + first,
-                    _rank)
+                    _gameSettings.Rank)
                 );
         }
 
-        public override void TryAddBall(Ball ball)
+        public override bool TryAddBall(Ball ball)
         {
+            bool result = false;
+
             if (!IsFull && Winner == BallType.None)
             {
                 IsFull = true;
 
-                TryAddBallIntoContainersList(_planes, ball);
-                TryAddBallIntoContainersList(_edges, ball);
-                TryAddBallIntoContainersList(_emittedLinesFromVertices, ball);
+                if (TryAddBallIntoContainersList(_planes, ball)
+                    || TryAddBallIntoContainersList(_edges, ball)
+                    || TryAddBallIntoContainersList(_emittedLinesFromVertices, ball))
+                {
+                    Version += 1;
+                    result = true;
+                }
             }
+
+            return result;
         }
 
-        public override void ResetToDefault()
+        protected virtual bool TryAddBallIntoContainersList(List<AbstractBallsContainer> ballsContainers, Ball ball)
         {
-            _planes.ForEach(x => x.ResetToDefault());
-            _edges.ForEach(x => x.ResetToDefault());
-            _emittedLinesFromVertices.ForEach(x => x.ResetToDefault());
-            Winner = BallType.None;
-            IsFull = false;
-        }
+            bool result = false;
 
-        protected virtual void TryAddBallIntoContainersList(List<AbstractBallsContainer> ballsContainers, Ball ball)
-        {
             foreach (AbstractBallsContainer container in ballsContainers)
             {
-                container.TryAddBall(ball);
-                UpdateFilledStatus(container);
-                UpdateWinner(container);
+                if (container.TryAddBall(ball))
+                {
+                    UpdateFilledStatus(container);
+                    UpdateWinner(container);
+                    result = true;
+                }
             }
+
+            return result;
         }
 
         #endregion

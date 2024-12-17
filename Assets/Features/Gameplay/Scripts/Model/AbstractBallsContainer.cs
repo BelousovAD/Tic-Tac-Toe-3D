@@ -1,10 +1,21 @@
-﻿namespace TicTacToe3D.Features.Gameplay
+﻿using System;
+
+namespace TicTacToe3D.Features.Gameplay
 {
     /// <summary>
     /// Абстрактный контейнер шаров для определения победителя
     /// </summary>
     public abstract class AbstractBallsContainer
     {
+        #region Events
+
+        /// <summary>
+        /// Версия данных контейнера изменилась
+        /// </summary>
+        public event Action onVersionChanged = delegate { };
+
+        #endregion
+
         #region Properties
 
         /// <summary>
@@ -39,6 +50,23 @@
         }
         protected BallType winner = BallType.None;
 
+        /// <summary>
+        /// Версия данных контейнера
+        /// </summary>
+        public int Version
+        {
+            get => version;
+            protected set
+            {
+                if (value > version)
+                {
+                    version = value;
+                    onVersionChanged();
+                }
+            }
+        }
+        protected int version = 0;
+
         #endregion
 
         #region Methods
@@ -47,12 +75,7 @@
         /// Пытается добавить шар в контейнер
         /// </summary>
         /// <param name="ball">Добавляемый шар</param>
-        public abstract void TryAddBall(Ball ball);
-
-        /// <summary>
-        /// Очистить контейнер от шаров и сбросить свойства
-        /// </summary>
-        public abstract void ResetToDefault();
+        public abstract bool TryAddBall(Ball ball);
 
         protected virtual void UpdateFilledStatus(AbstractBallsContainer ballsContainer)
         {

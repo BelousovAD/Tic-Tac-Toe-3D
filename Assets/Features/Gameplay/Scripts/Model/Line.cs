@@ -57,21 +57,20 @@
             _ballInfos = new(_rank);
         }
 
-        public override void TryAddBall(Ball ball)
+        public override bool TryAddBall(Ball ball)
         {
+            bool result = false;
+
             if (!IsFull && IsBallBelongingToLine(ball))
             {
                 _ballInfos.Add(ball);
                 UpdateFilledStatus(this);
                 UpdateWinner(this);
+                Version += 1;
+                result = true;
             }
-        }
 
-        public override void ResetToDefault()
-        {
-            _ballInfos.Clear();
-            Winner = BallType.None;
-            IsFull = false;
+            return result;
         }
 
         protected override void UpdateWinner(AbstractBallsContainer ballsContainer)
@@ -88,7 +87,8 @@
                     }
                 }
 
-                winner = ballType;
+                _ballInfos.ForEach(x => x.IsHighlighted = true);
+                Winner = ballType;
             }
         }
 

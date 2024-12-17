@@ -40,26 +40,27 @@
             }
         }
 
-        public override void TryAddBall(Ball ball)
+        public override bool TryAddBall(Ball ball)
         {
+            bool result = false;
+
             if (!IsFull && Winner == BallType.None)
             {
                 IsFull = true;
 
                 foreach (AbstractBallsContainer line in _emittedLines)
                 {
-                    line.TryAddBall(ball);
-                    UpdateFilledStatus(line);
-                    UpdateWinner(line);
+                    if (line.TryAddBall(ball))
+                    {
+                        UpdateFilledStatus(line);
+                        UpdateWinner(line);
+                        Version += 1;
+                        result = true;
+                    }
                 }
             }
-        }
 
-        public override void ResetToDefault()
-        {
-            _emittedLines.ForEach(x => x.ResetToDefault());
-            Winner = BallType.None;
-            IsFull = false;
+            return result;
         }
 
         #endregion
