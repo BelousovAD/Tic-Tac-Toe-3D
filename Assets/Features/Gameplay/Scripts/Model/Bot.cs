@@ -9,23 +9,41 @@
     {
         #region Properties
 
-        private BallSpawnPosition[,] m_ballSpawnPositions;
+        public override TurnController TurnController
+        {
+            protected get => base.TurnController;
+            set
+            {
+                if (value != TurnController)
+                {
+                    if (TurnController != null)
+                    {
+                        TurnController.onTurnChanged -= MakeMove;
+                    }
+
+                    base.TurnController = value;
+
+                    if (TurnController != null)
+                    {
+                        TurnController.onTurnChanged += MakeMove;
+                    }
+                }
+            }
+        }
+
+        private BallSpawnPositionController[,] m_ballSpawnPositions;
 
         #endregion
 
         #region Methods
 
-        public Bot(BallSpawnPosition[] ballSpawnPositions)
-            : base("Bot")
-        {
-            int dimension = (int)Mathf.Sqrt(ballSpawnPositions.Length);
-            m_ballSpawnPositions = new BallSpawnPosition[dimension, dimension];
+        public Bot(BallSpawner ballSpawner, string name = "Bot")
+            : base(ballSpawner, name)
+        { }
 
-            foreach (BallSpawnPosition ballSpawnPosition in ballSpawnPositions)
-            {
-                Vector3Int position = ballSpawnPosition.BallPosition;
-                m_ballSpawnPositions[position.x, position.y] = ballSpawnPosition;
-            }
+        protected virtual void MakeMove()
+        {
+            //TODO: Логика хода
         }
 
         #endregion

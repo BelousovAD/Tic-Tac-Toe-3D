@@ -8,29 +8,42 @@
         #region Properties
 
         /// <summary>
-        /// Идентификатор
-        /// </summary>
-        public int Id => _id;
-        private int _id = 0;
-
-        /// <summary>
         /// Имя
         /// </summary>
         public string Name => _name;
-        private string _name;
-        private static int _idCount = 0;
+        private string _name = string.Empty;
+
+        /// <summary>
+        /// Спавнер шаров
+        /// </summary>
+        public BallSpawner BallSpawner => _ballSpawner;
+        private BallSpawner _ballSpawner = default;
+
+        /// <summary>
+        /// Контроллер очерёдности ходов
+        /// </summary>
+        public virtual TurnController TurnController
+        {
+            protected get => _turnController;
+            set
+            {
+                if (value != _turnController)
+                {
+                    _turnController = value;
+                }
+            }
+        }
+        private TurnController _turnController = default;
 
         #endregion
 
         #region Methods
 
-        public Player()
+        public Player(BallSpawner ballSpawner, string name = null)
         {
-            _id = _idCount++;
-            _name = "Player_" + _id;
+            _ballSpawner = ballSpawner;
+            _name = string.IsNullOrWhiteSpace(name) ? "Player" : name;
         }
-
-        public Player(string name) : this() => _name = name;
 
         #endregion
     }
