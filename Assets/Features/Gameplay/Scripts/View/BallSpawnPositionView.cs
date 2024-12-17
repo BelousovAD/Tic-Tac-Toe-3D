@@ -29,14 +29,17 @@
         {
             ballSpawnPosition = GetComponent<BallSpawnPosition>();
             material = GetComponent<MeshRenderer>().material;
-            material.DisableKeyword(EMISSION);
-
-            ballSpawnPosition.onVisibleChanged += UpdateView;
         }
 
-        protected virtual void OnDestroy() => ballSpawnPosition.onVisibleChanged -= UpdateView;
+        protected virtual void Start()
+        {
+            material.DisableKeyword(EMISSION);
+            ballSpawnPosition.onVisibleChanged += UpdateView;
+            UpdateView();
+        }
 
-        protected virtual void OnDisable() => material.DisableKeyword(EMISSION);
+        protected virtual void OnDestroy()
+            => ballSpawnPosition.onVisibleChanged -= UpdateView;
 
         protected virtual void OnMouseEnter()
         {
@@ -58,7 +61,8 @@
             material.DisableKeyword(EMISSION);
         }
 
-        protected virtual void UpdateView() => gameObject.SetActive(ballSpawnPosition.IsVisible);
+        protected virtual void UpdateView()
+            => gameObject.SetActive(ballSpawnPosition.IsVisible);
 
         #endregion
     }
