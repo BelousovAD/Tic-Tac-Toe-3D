@@ -336,6 +336,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameArea
       objectReference: {fileID: 0}
+    - target: {fileID: 597507915431679506, guid: 066898551d09c664fad54bd62d6aa451, type: 3}
+      propertyPath: turnController
+      value: 
+      objectReference: {fileID: 2048082890}
     - target: {fileID: 6565806154986023967, guid: 066898551d09c664fad54bd62d6aa451, type: 3}
       propertyPath: m_RootOrder
       value: 2
