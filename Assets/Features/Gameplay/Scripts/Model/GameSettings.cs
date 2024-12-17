@@ -1,12 +1,12 @@
-﻿using UnityEngine;
-
-namespace TicTacToe3D.Features.Gameplay
+﻿namespace TicTacToe3D.Features.Gameplay
 {
     /// <summary>
     /// Настройки игры
     /// </summary>
     public class GameSettings
     {
+        #region Properties
+
         /// <summary>
         /// Режим игры
         /// </summary>
@@ -20,12 +20,12 @@ namespace TicTacToe3D.Features.Gameplay
         /// <summary>
         /// Цвет шара
         /// </summary>
-        public BallColor BallColor
+        public BallType BallType
         {
-            get => _ballColor;
-            set => _ballColor = value;
+            get => _ballType;
+            set => _ballType = value;
         }
-        private BallColor _ballColor = BallColor.White;
+        private BallType _ballType = BallType.White;
 
         /// <summary>
         /// Ранг куба игрового поля
@@ -36,5 +36,7 @@ namespace TicTacToe3D.Features.Gameplay
             set => _rank = value <= 0 ? 1 : value;
         }
         private int _rank = 3;
+
+        #endregion
     }
 }
