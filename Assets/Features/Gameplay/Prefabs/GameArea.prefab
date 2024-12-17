@@ -312,10 +312,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LayerBallSpawnPositions
       objectReference: {fileID: 0}
-    - target: {fileID: 4657303766238372236, guid: eac26d02348951345ad2565eb5a246c8, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eac26d02348951345ad2565eb5a246c8, type: 3}
 --- !u!4 &4038961854200572365 stripped
