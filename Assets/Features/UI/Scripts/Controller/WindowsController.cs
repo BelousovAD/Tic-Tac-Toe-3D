@@ -29,7 +29,10 @@
         /// <param name="windowId"></param>
         public virtual void OpenNewWindow(string windowId, bool needCloseCurrent)
         {
-            SetWindowStatus(windowsHistory.Peek(), needCloseCurrent);
+            if (windowsHistory.Count > 0)
+            {
+                SetWindowStatus(windowsHistory.Peek(), !needCloseCurrent);
+            }
 
             Window window = spawnedWindows.Find(x => x.Id == windowId);
 
@@ -77,6 +80,7 @@
             {
                 window = Instantiate(window, transform);
                 window.Construct(this);
+                spawnedWindows.Add(window);
                 SetWindowStatus(window, true);
             }
 
