@@ -44,6 +44,27 @@
         }
         protected bool isVisible = false;
 
+        /// <summary>
+        /// Контроллер окон
+        /// </summary>
+        public WindowsController WindowsController
+        {
+            get => windowsController;
+            protected set => windowsController = value;
+        }
+        protected WindowsController windowsController = default;
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Конструктор окна
+        /// </summary>
+        /// <param name="controller"></param>
+        public virtual void Construct(WindowsController controller)
+            => windowsController = controller;
+
         #endregion
     }
 }

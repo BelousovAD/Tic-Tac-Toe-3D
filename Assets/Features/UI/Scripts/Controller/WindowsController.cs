@@ -27,8 +27,10 @@
         /// Открыть новое окно
         /// </summary>
         /// <param name="windowId"></param>
-        public virtual void OpenNewWindow(string windowId)
+        public virtual void OpenNewWindow(string windowId, bool needCloseCurrent)
         {
+            SetWindowStatus(windowsHistory.Peek(), needCloseCurrent);
+
             Window window = spawnedWindows.Find(x => x.Id == windowId);
 
             if (window != null)
@@ -65,7 +67,7 @@
         }
 
         protected virtual void Start()
-            => OpenNewWindow(startWindowId.Value);
+            => OpenNewWindow(startWindowId.Value, false);
 
         protected virtual Window SpawnWindow(string windowId)
         {
@@ -74,6 +76,7 @@
             if (window != null)
             {
                 window = Instantiate(window, transform);
+                window.Construct(this);
                 SetWindowStatus(window, true);
             }
 
