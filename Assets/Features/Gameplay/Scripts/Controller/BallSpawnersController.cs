@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using UnityEngine;
+    using Zenject;
 
     /// <summary>
     /// Контроллер спавнеров шаров
@@ -10,15 +11,14 @@
     {
         #region Properties
 
-        [SerializeField]
-        protected TurnController turnController = default;
-
         /// <summary>
         /// Спавнеры шаров
         /// </summary>
         public List<BallSpawner> BallSpawners => _ballSpawners;
         [SerializeField]
         private List<BallSpawner> _ballSpawners = new();
+
+        protected TurnController turnController = default;
 
         #endregion
 
@@ -30,10 +30,14 @@
             BallSpawners[0].gameObject.SetActive(true);
         }
 
-        protected virtual void OnEnable()
-            => turnController.onTurnChanged += SwitchObjects;
+        [Inject]
+        protected virtual void Construct(TurnController _turnController)
+        {
+            turnController = _turnController;
+            turnController.onTurnChanged += SwitchObjects;
+        }
 
-        protected virtual void OnDisable()
+        protected virtual void OnDestroy()
             => turnController.onTurnChanged -= SwitchObjects;
 
         protected virtual void SwitchObjects()
