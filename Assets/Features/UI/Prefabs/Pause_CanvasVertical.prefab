@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 807188401416908646}
   - component: {fileID: 807188401416908647}
   - component: {fileID: 807188401416908648}
+  - component: {fileID: 2623667183304465651}
   m_Layer: 5
   m_Name: MainMenuButton
   m_TagString: Untagged
@@ -202,6 +203,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2623667183304465651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807188401416908650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad1184a058c707844b78ebd0ee8f0690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: Menu
 --- !u!1 &807188401976370020
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,6 +547,7 @@ GameObject:
   - component: {fileID: 807188402564685306}
   - component: {fileID: 807188402564685307}
   - component: {fileID: 807188402564685308}
+  - component: {fileID: 5067983156560495596}
   m_Layer: 5
   m_Name: NewGameButton
   m_TagString: Untagged
@@ -643,6 +658,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5067983156560495596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807188402564685310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad1184a058c707844b78ebd0ee8f0690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: Gameplay
 --- !u!1 &807188403031836620
 GameObject:
   m_ObjectHideFlags: 0
