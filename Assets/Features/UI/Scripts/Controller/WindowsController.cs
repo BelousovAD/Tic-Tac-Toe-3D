@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using TicTacToe3D.Features.Common;
     using UnityEngine;
+    using Zenject;
 
     /// <summary>
     /// Контроллер окон
@@ -18,6 +19,7 @@
 
         protected Stack<Window> windowsHistory = new();
         protected List<Window> spawnedWindows = new();
+        protected IInstantiator instantiator = default;
 
         #endregion
 
@@ -69,8 +71,12 @@
             }
         }
 
-        protected virtual void Start()
-            => OpenNewWindow(startWindowId.Value, false);
+        [Inject]
+        protected virtual void Construct(IInstantiator _instantiator)
+        {
+            instantiator = _instantiator;
+            OpenNewWindow(startWindowId.Value, false);
+        }
 
         protected virtual Window SpawnWindow(string windowId)
         {
@@ -78,7 +84,7 @@
 
             if (window != null)
             {
-                window = Instantiate(window, transform);
+                window = instantiator.InstantiatePrefabForComponent<Window>(window.gameObject, transform);
                 window.Construct(this);
                 spawnedWindows.Add(window);
                 SetWindowStatus(window, true);
