@@ -26,6 +26,9 @@
         [SerializeField]
         protected BallData ballData = default;
 
+        [SerializeField]
+        protected Transform parent = default;
+
         #endregion
 
         #region Methods
@@ -39,7 +42,7 @@
         protected virtual void SpawnBall(BallSpawnPosition ballSpawnPosition)
         {
             Ball ball = new(ballData.Type, ballSpawnPosition.NextBallPosition);
-            BallView ballView = Instantiate(ballData.Prefab, ballSpawnPosition.transform.position, UnityEngine.Random.rotation);
+            BallView ballView = Instantiate(ballData.Prefab, ballSpawnPosition.transform.position, UnityEngine.Random.rotation, parent);
             ballView.Ball = ball;
             onBallSpawned(ball);
         }

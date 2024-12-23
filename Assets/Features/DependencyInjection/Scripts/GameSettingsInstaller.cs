@@ -16,7 +16,8 @@
             Container.Bind<GameSettings>()
                 .AsSingle()
                 .CopyIntoAllSubContainers()
-                .NonLazy();
+                .NonLazy()
+                .IfNotBound();
         }
     }
 }

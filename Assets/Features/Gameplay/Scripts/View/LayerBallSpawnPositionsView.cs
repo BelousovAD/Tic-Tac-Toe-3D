@@ -12,10 +12,9 @@
         #region Properties
 
         [SerializeField]
-        protected TurnController turnController = default;
-        [SerializeField]
         protected List<GameObject> switchObjects = new();
 
+        protected TurnController turnController = default;
         protected GameStateController gameStateController = default;
 
         #endregion
@@ -23,14 +22,20 @@
         #region Methods
 
         [Inject]
-        protected virtual void Construct(GameStateController _gameStateController)
+        protected virtual void Construct(GameStateController _gameStateController, TurnController _turnController)
         {
             gameStateController = _gameStateController;
             gameStateController.onStateChanged += SwitchObjects;
+            turnController = _turnController;
+            turnController.onTurnChanged += SwitchObjects;
+            SwitchObjects();
         }
 
         protected virtual void OnDestroy()
-            => gameStateController.onStateChanged -= SwitchObjects;
+        {
+            gameStateController.onStateChanged -= SwitchObjects;
+            turnController.onTurnChanged -= SwitchObjects;
+        }
 
         protected virtual void SwitchObjects()
             => switchObjects.ForEach(
