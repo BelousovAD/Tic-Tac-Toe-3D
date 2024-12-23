@@ -25,10 +25,6 @@
                 .AsSingle()
                 .CopyIntoAllSubContainers()
                 .NonLazy();
-            Container.Bind<GameAreaStateController>()
-                .AsSingle()
-                .CopyIntoAllSubContainers()
-                .NonLazy();
         }
     }
 }
