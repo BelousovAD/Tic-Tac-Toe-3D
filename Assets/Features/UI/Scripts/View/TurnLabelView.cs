@@ -37,15 +37,14 @@
             GameStateController _gameStateController,
             TurnController _turnController)
         {
+            textField = GetComponent<Text>();
             gameSettings = _gameSettings;
             gameStateController = _gameStateController;
             gameStateController.onStateChanged += UpdateView;
             turnController = _turnController;
             turnController.onTurnChanged += UpdateView;
+            UpdateView();
         }
-
-        protected virtual void Awake()
-            => textField = GetComponent<Text>();
 
         protected virtual void OnDestroy()
         {
