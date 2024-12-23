@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballData: {fileID: 11400000, guid: d5daddcdb485f834b9d61a873852be84, type: 2}
+  parent: {fileID: 687479609}
 --- !u!1 &369485636
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,6 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballData: {fileID: 11400000, guid: 55ffbca88972b594e94ba726948d93ed, type: 2}
+  parent: {fileID: 687479609}
 --- !u!1 &455227507
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 455227509}
   - component: {fileID: 455227508}
+  - component: {fileID: 455227510}
   m_Layer: 0
   m_Name: PlayersInitializer
   m_TagString: Untagged
@@ -257,6 +260,24 @@ Transform:
   m_Father: {fileID: 1432537470}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &455227510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455227507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - {fileID: 455227508}
+  _identifier: 
+  _useSceneContext: 0
+  _context: {fileID: 0}
+  _bindType: 0
 --- !u!1 &620936282
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,6 +407,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 066898551d09c664fad54bd62d6aa451, type: 3}
+--- !u!4 &687479609 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6565806154986023967, guid: 066898551d09c664fad54bd62d6aa451, type: 3}
+  m_PrefabInstance: {fileID: 687479608}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,7 +668,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5bc3f9c84612440966355eccc23dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnController: {fileID: 2048082890}
   _ballSpawners:
   - {fileID: 369485638}
   - {fileID: 246219544}
@@ -881,7 +906,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f455abe1410c6c841a62a88d1f025769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersInitializer: {fileID: 455227508}
 --- !u!114 &2048082891
 MonoBehaviour:
   m_ObjectHideFlags: 0
