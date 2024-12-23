@@ -21,7 +21,6 @@
 
         #region Properties
 
-        [SerializeField]
         protected PlayersInitializer playersInitializer = default;
 
         /// <summary>
@@ -41,7 +40,6 @@
         }
         private Player _currentPlayer = default;
 
-        [Inject]
         protected GameStateController gameStateController = default;
         protected List<Player> players = null;
         protected IEnumerator<Player> playersEnumerator = default;
@@ -50,16 +48,21 @@
 
         #region Methods
 
-        protected virtual void OnEnable()
+        [Inject]
+        protected virtual void Construct(
+            GameStateController _gameStateController,
+            PlayersInitializer _playersInitializer)
         {
+            playersInitializer = _playersInitializer;
             playersInitializer.onPlayersInited += UpdatePlayers;
             UpdatePlayers();
-
+            
+            gameStateController = _gameStateController;
             gameStateController.onStateChanged += MoveToNextPlayer;
             MoveToNextPlayer();
         }
 
-        protected virtual void OnDisable()
+        protected virtual void OnDestroy()
         {
             playersInitializer.onPlayersInited -= UpdatePlayers;
             gameStateController.onStateChanged -= MoveToNextPlayer;
