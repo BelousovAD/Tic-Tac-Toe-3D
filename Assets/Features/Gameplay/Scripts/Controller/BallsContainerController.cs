@@ -1,4 +1,5 @@
-﻿using Zenject;
+﻿using System;
+using Zenject;
 
 namespace TicTacToe3D.Features.Gameplay
 {
@@ -6,7 +7,7 @@ namespace TicTacToe3D.Features.Gameplay
     /// Контроллер контейнера шаров
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class BallsContainerController<T> where T : AbstractBallsContainer
+    public class BallsContainerController<T> : IDisposable where T : AbstractBallsContainer
     {
         #region Properties
 
@@ -27,7 +28,7 @@ namespace TicTacToe3D.Features.Gameplay
             BallSpawner.onBallSpawned += AddBall;
         }
 
-        ~BallsContainerController()
+        public void Dispose()
             => BallSpawner.onBallSpawned -= AddBall;
 
         protected virtual void AddBall(Ball ball)

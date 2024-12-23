@@ -5,7 +5,7 @@ namespace TicTacToe3D.Features.Gameplay
     /// <summary>
     /// Абстрактный контейнер шаров для определения победителя
     /// </summary>
-    public abstract class AbstractBallsContainer
+    public abstract class AbstractBallsContainer : IDisposable
     {
         #region Events
 
@@ -71,6 +71,8 @@ namespace TicTacToe3D.Features.Gameplay
 
         #region Methods
 
+        public abstract void Dispose();
+
         /// <summary>
         /// Пытается добавить шар в контейнер
         /// </summary>
@@ -78,12 +80,7 @@ namespace TicTacToe3D.Features.Gameplay
         public abstract bool TryAddBall(Ball ball);
 
         protected virtual void UpdateFilledStatus(AbstractBallsContainer ballsContainer)
-        {
-            if (!ballsContainer.IsFull)
-            {
-                IsFull = false;
-            }
-        }
+            => IsFull = IsFull && ballsContainer.IsFull;
 
         protected virtual void UpdateWinner(AbstractBallsContainer ballsContainer)
         {

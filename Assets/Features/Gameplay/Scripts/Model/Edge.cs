@@ -40,6 +40,12 @@
             }
         }
 
+        public override void Dispose()
+        {
+            _emittedLines.ForEach(x => x.Dispose());
+            _emittedLines.Clear();
+        }
+
         public override bool TryAddBall(Ball ball)
         {
             bool result = false;
@@ -57,6 +63,11 @@
                         Version += 1;
                         result = true;
                     }
+                }
+
+                if (!result)
+                {
+                    IsFull = result;
                 }
             }
 

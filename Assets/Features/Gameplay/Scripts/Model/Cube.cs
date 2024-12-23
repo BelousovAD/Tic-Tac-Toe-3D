@@ -1,5 +1,6 @@
 ﻿namespace TicTacToe3D.Features.Gameplay
 {
+    using System;
     using System.Collections.Generic;
     using UnityEngine;
     using Zenject;
@@ -81,6 +82,16 @@
                 );
         }
 
+        public override void Dispose()
+        {
+            _planes.ForEach(x => x.Dispose());
+            _planes.Clear();
+            _edges.ForEach(x => x.Dispose());
+            _edges.Clear();
+            _emittedLinesFromVertices.ForEach(x => x.Dispose());
+            _emittedLinesFromVertices.Clear();
+        }
+
         public override bool TryAddBall(Ball ball)
         {
             bool result = false;
@@ -89,9 +100,11 @@
             {
                 IsFull = true;
 
-                if (TryAddBallIntoContainersList(_planes, ball)
-                    || TryAddBallIntoContainersList(_edges, ball)
-                    || TryAddBallIntoContainersList(_emittedLinesFromVertices, ball))
+                bool planesResult = TryAddBallIntoContainersList(_planes, ball);
+                bool edgesResult = TryAddBallIntoContainersList(_edges, ball);
+                bool verticesResult = TryAddBallIntoContainersList(_emittedLinesFromVertices, ball);
+
+                if (planesResult || edgesResult || verticesResult)
                 {
                     Version += 1;
                     result = true;

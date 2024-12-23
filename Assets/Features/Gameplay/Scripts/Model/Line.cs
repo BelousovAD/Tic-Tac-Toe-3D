@@ -57,6 +57,9 @@
             _ballInfos = new(_rank);
         }
 
+        public override void Dispose()
+            => _ballInfos.Clear();
+
         public override bool TryAddBall(Ball ball)
         {
             bool result = false;

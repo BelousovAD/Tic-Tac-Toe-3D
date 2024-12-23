@@ -1,5 +1,6 @@
 ﻿namespace TicTacToe3D.Features.Gameplay
 {
+    using System;
     using System.Collections.Generic;
     using UnityEngine;
 
@@ -49,6 +50,19 @@
             }
         }
 
+        public override void Dispose()
+        {
+            foreach (List<AbstractBallsContainer> row in _emittedLines)
+            {
+                foreach (AbstractBallsContainer line in row)
+                {
+                    line.Dispose();
+                }
+                row.Clear();
+            }
+            _emittedLines.Clear();
+        }
+
         public override bool TryAddBall(Ball ball)
         {
             bool result = false;
@@ -69,6 +83,11 @@
                             result = true;
                         }
                     }
+                }
+
+                if (!result)
+                {
+                    IsFull = result;
                 }
             }
 
