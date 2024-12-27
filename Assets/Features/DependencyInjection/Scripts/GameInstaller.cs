@@ -13,11 +13,7 @@
         /// </summary>
         public override void InstallBindings()
         {
-            Container.Bind<Cube>()
-                .AsSingle()
-                .CopyIntoAllSubContainers()
-                .NonLazy();
-            Container.Bind<BallsContainerController<Cube>>()
+            Container.BindInterfacesAndSelfTo<Cube>()
                 .AsSingle()
                 .CopyIntoAllSubContainers()
                 .NonLazy();

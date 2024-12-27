@@ -29,10 +29,10 @@ namespace TicTacToe3D.Features.Gameplay
             => nextState != GameStateType.CheckStatus;
 
         public override void OnStateEnter()
-        {
-            cube.onVersionChanged += CheckStatus;
-            CheckStatus();
-        }
+            => cube.onVersionChanged += CheckStatus;
+
+        public override void OnStateProcess()
+            => CheckStatus();
 
         public override void OnStateExit()
             => cube.onVersionChanged -= CheckStatus;

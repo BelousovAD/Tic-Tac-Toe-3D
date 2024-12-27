@@ -38,6 +38,12 @@
             UpdateView();
         }
 
+        protected virtual void OnEnable()
+            => material.DisableKeyword(EMISSION);
+
+        protected virtual void OnDisable()
+            => material.DisableKeyword(EMISSION);
+
         protected virtual void OnDestroy()
             => ballSpawnPosition.onVisibleChanged -= UpdateView;
 

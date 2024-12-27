@@ -1,22 +1,13 @@
 ﻿namespace TicTacToe3D.Features.Gameplay
 {
-    using System;
     using UnityEngine;
+    using Zenject;
 
     /// <summary>
     /// Спавнер шаров
     /// </summary>
     public class BallSpawner : MonoBehaviour
     {
-        #region Events
-
-        /// <summary>
-        /// Шар заспавнен
-        /// </summary>
-        public static event Action<Ball> onBallSpawned = delegate { };
-
-        #endregion
-
         #region Properties
 
         /// <summary>
@@ -29,22 +20,26 @@
         [SerializeField]
         protected Transform parent = default;
 
+        protected Cube cube = default;
+
         #endregion
 
         #region Methods
 
-        protected virtual void OnEnable()
-            => BallSpawnPositionController.onBallSpawn += SpawnBall;
+        [Inject]
+        protected virtual void Construct(Cube _cube)
+            => cube = _cube;
 
-        protected virtual void OnDisable()
-            => BallSpawnPositionController.onBallSpawn -= SpawnBall;
-
-        protected virtual void SpawnBall(BallSpawnPosition ballSpawnPosition)
+        /// <summary>
+        /// Заспавнить шар
+        /// </summary>
+        /// <param name="ballSpawnPosition">Позиция спавна шара</param>
+        public virtual void SpawnBall(BallSpawnPosition ballSpawnPosition)
         {
-            Ball ball = new(ballData.Type, ballSpawnPosition.NextBallPosition);
+            Ball ball = cube.GetBallAt(ballSpawnPosition.NextBallPosition);
             BallView ballView = Instantiate(ballData.Prefab, ballSpawnPosition.transform.position, UnityEngine.Random.rotation, parent);
             ballView.Ball = ball;
-            onBallSpawned(ball);
+            cube.TryAddBall(ballSpawnPosition.NextBallPosition, ballData.Type);
         }
 
         #endregion

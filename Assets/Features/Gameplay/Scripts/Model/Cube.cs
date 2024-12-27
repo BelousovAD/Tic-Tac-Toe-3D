@@ -1,5 +1,6 @@
 ﻿namespace TicTacToe3D.Features.Gameplay
 {
+    using System;
     using System.Collections.Generic;
     using UnityEngine;
     using Zenject;
@@ -79,35 +80,76 @@
                     third + second + first,
                     _gameSettings.Rank)
                 );
+
+            for (int i = 0; i < _gameSettings.Rank; ++i)
+            {
+                for (int j = 0; j < _gameSettings.Rank; ++j)
+                {
+                    for (int k = 0; k < _gameSettings.Rank; ++k)
+                    {
+                        AddBallModel(new Ball(new Vector3Int(i, j, k), BallType.None));
+                    }
+                }
+            }
         }
 
-        public override bool TryAddBall(Ball ball)
+        public override void Dispose()
+        {
+            _planes.ForEach(x => x.Dispose());
+            _planes.Clear();
+            _edges.ForEach(x => x.Dispose());
+            _edges.Clear();
+            _emittedLinesFromVertices.ForEach(x => x.Dispose());
+            _emittedLinesFromVertices.Clear();
+        }
+
+        public override void AddBallModel(Ball ball)
+        {
+            _planes.ForEach(x => x.AddBallModel(ball));
+            _edges.ForEach(x => x.AddBallModel(ball));
+            _emittedLinesFromVertices.ForEach(x => x.AddBallModel(ball));
+        }
+
+        public override Ball GetBallAt(Vector3Int position)
+            => _planes[0].GetBallAt(position);
+
+        public override bool TryAddBall(Vector3Int position, BallType ballType)
         {
             bool result = false;
 
-            if (!IsFull && Winner == BallType.None)
+            if (!IsFull)
             {
                 IsFull = true;
 
-                if (TryAddBallIntoContainersList(_planes, ball)
-                    || TryAddBallIntoContainersList(_edges, ball)
-                    || TryAddBallIntoContainersList(_emittedLinesFromVertices, ball))
+                bool planesResult = TryAddBallIntoContainersList(_planes, position, ballType);
+                bool edgesResult = TryAddBallIntoContainersList(_edges, position, ballType);
+                bool verticesResult = TryAddBallIntoContainersList(_emittedLinesFromVertices, position, ballType);
+
+                if (planesResult || edgesResult || verticesResult)
                 {
                     Version += 1;
                     result = true;
+                }
+
+                if (!result)
+                {
+                    isFull = result;
                 }
             }
 
             return result;
         }
 
-        protected virtual bool TryAddBallIntoContainersList(List<AbstractBallsContainer> ballsContainers, Ball ball)
+        protected virtual bool TryAddBallIntoContainersList(
+            List<AbstractBallsContainer> ballsContainers,
+            Vector3Int ballPosition,
+            BallType ballType)
         {
             bool result = false;
 
             foreach (AbstractBallsContainer container in ballsContainers)
             {
-                if (container.TryAddBall(ball))
+                if (container.TryAddBall(ballPosition, ballType))
                 {
                     UpdateFilledStatus(container);
                     UpdateWinner(container);

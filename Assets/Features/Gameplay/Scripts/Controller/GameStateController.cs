@@ -28,11 +28,11 @@
             get => currentState;
             protected set
             {
-                if (value != currentState)
-                {
-                    currentState = value;
-                    onStateChanged();
-                }
+                currentState?.OnStateExit();                
+                currentState = value;
+                CurrentState?.OnStateEnter();
+                onStateChanged();
+                currentState?.OnStateProcess();
             }
         }
 
@@ -66,9 +66,7 @@
         {
             if (CurrentState.CanSwitchToState(nextState))
             {
-                CurrentState.OnStateExit();
                 CurrentState = states.Find(x => x.StateType == nextState);
-                CurrentState.OnStateEnter();
             }
         }
 

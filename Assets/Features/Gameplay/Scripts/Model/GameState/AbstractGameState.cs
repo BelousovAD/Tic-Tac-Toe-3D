@@ -43,6 +43,11 @@
         public virtual void OnStateEnter() { }
 
         /// <summary>
+        /// Действия при работе состояния
+        /// </summary>
+        public virtual void OnStateProcess() { }
+
+        /// <summary>
         /// Действия при выходе из состояния
         /// </summary>
         public virtual void OnStateExit() { }

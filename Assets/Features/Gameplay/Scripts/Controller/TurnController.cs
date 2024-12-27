@@ -13,6 +13,11 @@
         #region Events
 
         /// <summary>
+        /// Текущий ход подготавливается
+        /// </summary>
+        public event Action onTurnPrepare = delegate { };
+
+        /// <summary>
         /// Текущий ход изменился
         /// </summary>
         public event Action onTurnChanged = delegate { };
@@ -34,6 +39,7 @@
                 if (value != _currentPlayer)
                 {
                     _currentPlayer = value;
+                    onTurnPrepare();
                     onTurnChanged();
                 }
             }

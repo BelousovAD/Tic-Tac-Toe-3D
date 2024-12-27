@@ -9,16 +9,13 @@
 
         public WaitForTurnGameState(GameStateController gameStateController)
             : base(gameStateController, GameStateType.WaitForTurn)
-        { }
+            => BallSpawnPositionController.onClick += SetCheckStatusState;
+
+        ~WaitForTurnGameState()
+            => BallSpawnPositionController.onClick -= SetCheckStatusState;
 
         public override bool CanSwitchToState(GameStateType nextState)
             => nextState == GameStateType.CheckStatus;
-
-        public override void OnStateEnter()
-            => BallSpawnPositionController.onClick += SetCheckStatusState;
-
-        public override void OnStateExit()
-            => BallSpawnPositionController.onClick -= SetCheckStatusState;
 
         protected virtual void SetCheckStatusState()
             => controller.SetState(GameStateType.CheckStatus);
