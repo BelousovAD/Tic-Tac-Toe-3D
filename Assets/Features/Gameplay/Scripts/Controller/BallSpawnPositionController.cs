@@ -3,7 +3,6 @@
     using System;
     using UnityEngine;
     using UnityEngine.EventSystems;
-    using Zenject;
 
     /// <summary>
     /// Контроллер позиции спавна шара
@@ -27,25 +26,43 @@
 
         #region Properties
 
+        /// <summary>
+        /// Позиция спавна шара
+        /// </summary>
+        public BallSpawnPosition BallSpawnPosition
+        {
+            get
+            {
+                if (ballSpawnPosition == null)
+                {
+                    ballSpawnPosition = GetComponent<BallSpawnPosition>();
+                }
+
+                return ballSpawnPosition;
+            }
+        }
         protected BallSpawnPosition ballSpawnPosition = default;
 
         #endregion
 
         #region Methods
 
-        protected virtual void Awake()
-            => ballSpawnPosition = GetComponent<BallSpawnPosition>();
+        /// <summary>
+        /// Действия при клике по позиции спавна шара
+        /// </summary>
+        public virtual void Click()
+        {
+            onBallSpawn(BallSpawnPosition);
+            BallSpawnPosition.IncreaseNextPosition();
+            onClick();
+        }
 
         protected virtual void OnMouseUpAsButton()
         {
-            if (!isActiveAndEnabled || EventSystem.current.IsPointerOverGameObject())
+            if (isActiveAndEnabled && !EventSystem.current.IsPointerOverGameObject())
             {
-                return;
+                Click();
             }
-
-            onClick();
-            onBallSpawn(ballSpawnPosition);
-            ballSpawnPosition.IncreaseNextPosition();
         }
 
         #endregion

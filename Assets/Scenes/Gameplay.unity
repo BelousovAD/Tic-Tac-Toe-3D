@@ -668,7 +668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5bc3f9c84612440966355eccc23dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ballSpawners:
+  ballSpawners:
   - {fileID: 369485638}
   - {fileID: 246219544}
 --- !u!1 &1432537469

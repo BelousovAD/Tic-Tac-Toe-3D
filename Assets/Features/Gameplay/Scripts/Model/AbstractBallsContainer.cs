@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace TicTacToe3D.Features.Gameplay
 {
@@ -74,10 +75,25 @@ namespace TicTacToe3D.Features.Gameplay
         public abstract void Dispose();
 
         /// <summary>
-        /// Пытается добавить шар в контейнер
+        /// Добавить модель шара в контейнер
         /// </summary>
         /// <param name="ball">Добавляемый шар</param>
-        public abstract bool TryAddBall(Ball ball);
+        public abstract void AddBallModel(Ball ball);
+
+        /// <summary>
+        /// Получить модель шара из контейнера
+        /// </summary>
+        /// <param name="position">Позиция шара в контейнере</param>
+        /// <returns>Модель шара</returns>
+        public abstract Ball GetBallAt(Vector3Int position);
+
+        /// <summary>
+        /// Попытка добавить шар в контейнер
+        /// </summary>
+        /// <param name="position">Позиция шара в контейнере</param>
+        /// <param name="ballType">Тип шара</param>
+        /// <returns>Добавлен ли шар в контейнер</returns>
+        public abstract bool TryAddBall(Vector3Int position, BallType ballType);
 
         protected virtual void UpdateFilledStatus(AbstractBallsContainer ballsContainer)
             => IsFull = IsFull && ballsContainer.IsFull;

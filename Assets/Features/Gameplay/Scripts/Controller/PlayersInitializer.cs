@@ -54,7 +54,10 @@
         #region Methods
 
         [Inject]
-        protected virtual void Construct(GameSettings gameSettings)
+        protected virtual void Construct(
+            GameSettings gameSettings,
+            BallSpawnPositionControllersProvider ballSpawnPositionControllersProvider,
+            Cube cube)
         {
             ballSpawners = ballSpawnersController.BallSpawners;
             List<Player> players = new(PLAYERS_NUMBER);
@@ -67,11 +70,11 @@
             else if (gameSettings.BallType == BallType.White)
             {
                 players.Add(new Player(ballSpawners[0]));
-                players.Add(new Bot(ballSpawners[1]));
+                players.Add(new Bot(ballSpawners[1], ballSpawnPositionControllersProvider, cube));
             }
             else if (gameSettings.BallType == BallType.Black)
             {
-                players.Add(new Bot(ballSpawners[0]));
+                players.Add(new Bot(ballSpawners[0], ballSpawnPositionControllersProvider, cube));
                 players.Add(new Player(ballSpawners[1]));
             }
 

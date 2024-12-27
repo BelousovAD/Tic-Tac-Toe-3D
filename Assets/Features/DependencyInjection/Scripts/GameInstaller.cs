@@ -17,10 +17,6 @@
                 .AsSingle()
                 .CopyIntoAllSubContainers()
                 .NonLazy();
-            Container.BindInterfacesAndSelfTo<BallsContainerController<Cube>>()
-                .AsSingle()
-                .CopyIntoAllSubContainers()
-                .NonLazy();
             Container.Bind<GameStateController>()
                 .AsSingle()
                 .CopyIntoAllSubContainers()

@@ -14,10 +14,11 @@
         /// <summary>
         /// Спавнеры шаров
         /// </summary>
-        public List<BallSpawner> BallSpawners => _ballSpawners;
+        public List<BallSpawner> BallSpawners => ballSpawners;
         [SerializeField]
-        private List<BallSpawner> _ballSpawners = new();
+        protected List<BallSpawner> ballSpawners = new();
 
+        protected IEnumerator<BallSpawner> ballSpawnersEnumerator = default;
         protected TurnController turnController = default;
 
         #endregion
@@ -26,24 +27,34 @@
 
         protected virtual void Start()
         {
-            BallSpawners.ForEach(x => x.gameObject.SetActive(false));
-            BallSpawners[0].gameObject.SetActive(true);
+            ballSpawnersEnumerator = ballSpawners.GetEnumerator();
+            MoveToNextBallSpawner();
         }
 
         [Inject]
         protected virtual void Construct(TurnController _turnController)
         {
             turnController = _turnController;
-            turnController.onTurnChanged += SwitchObjects;
+            turnController.onTurnPrepare += MoveToNextBallSpawner;
+            BallSpawnPositionController.onBallSpawn += SpawnBall;
         }
 
         protected virtual void OnDestroy()
-            => turnController.onTurnChanged -= SwitchObjects;
-
-        protected virtual void SwitchObjects()
         {
-            BallSpawners.ForEach(x => x.gameObject.SetActive(false));
-            turnController.CurrentPlayer.BallSpawner.gameObject.SetActive(true);
+            turnController.onTurnPrepare -= MoveToNextBallSpawner;
+            BallSpawnPositionController.onBallSpawn -= SpawnBall;
+        }
+
+        protected virtual void SpawnBall(BallSpawnPosition ballSpawnPosition)
+            => ballSpawnersEnumerator.Current.SpawnBall(ballSpawnPosition);
+
+        protected virtual void MoveToNextBallSpawner()
+        {
+            if (!ballSpawnersEnumerator.MoveNext())
+            {
+                ballSpawnersEnumerator.Reset();
+                ballSpawnersEnumerator.MoveNext();
+            }
         }
 
         #endregion

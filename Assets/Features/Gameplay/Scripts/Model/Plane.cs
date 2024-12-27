@@ -63,11 +63,23 @@
             _emittedLines.Clear();
         }
 
-        public override bool TryAddBall(Ball ball)
+        public override void AddBallModel(Ball ball)
+        {
+            AbstractBallsContainer container = GetContainerWithBallPosition(ball.Position);
+            container.AddBallModel(ball);
+        }
+
+        public override Ball GetBallAt(Vector3Int position)
+        {
+            AbstractBallsContainer container = GetContainerWithBallPosition(position);
+            return container.GetBallAt(position);
+        }
+
+        public override bool TryAddBall(Vector3Int position, BallType ballType)
         {
             bool result = false;
 
-            if (!IsFull && Winner == BallType.None)
+            if (!IsFull)
             {
                 IsFull = true;
 
@@ -75,13 +87,14 @@
                 {
                     foreach (AbstractBallsContainer line in row)
                     {
-                        if (line.TryAddBall(ball))
+                        if (line.TryAddBall(position, ballType))
                         {
-                            UpdateFilledStatus(line);
-                            UpdateWinner(line);
                             Version += 1;
                             result = true;
                         }
+
+                        UpdateFilledStatus(line);
+                        UpdateWinner(line);
                     }
                 }
 
@@ -92,6 +105,14 @@
             }
 
             return result;
+        }
+
+        protected virtual AbstractBallsContainer GetContainerWithBallPosition(Vector3Int position)
+        {
+            Vector3Int centeredBallPosition = position - _start;
+            int i = Mathf.FloorToInt(Vector3.Dot(centeredBallPosition, _firstDirVector));
+            int j = Mathf.FloorToInt(Vector3.Dot(centeredBallPosition, _secondDirVector));
+            return _emittedLines[i][j];
         }
 
         #endregion
