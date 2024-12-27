@@ -42,14 +42,14 @@
             gameStateController = _gameStateController;
             gameStateController.onStateChanged += UpdateView;
             turnController = _turnController;
-            turnController.onTurnChanged += UpdateView;
+            turnController.onTurnPrepare += UpdateView;
             UpdateView();
         }
 
         protected virtual void OnDestroy()
         {
             gameStateController.onStateChanged -= UpdateView;
-            turnController.onTurnChanged -= UpdateView;
+            turnController.onTurnPrepare -= UpdateView;
         }
 
         protected virtual void UpdateView()

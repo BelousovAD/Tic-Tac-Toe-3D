@@ -27,14 +27,14 @@
             gameStateController = _gameStateController;
             gameStateController.onStateChanged += SwitchObjects;
             turnController = _turnController;
-            turnController.onTurnChanged += SwitchObjects;
+            turnController.onTurnPrepare += SwitchObjects;
             SwitchObjects();
         }
 
         protected virtual void OnDestroy()
         {
             gameStateController.onStateChanged -= SwitchObjects;
-            turnController.onTurnChanged -= SwitchObjects;
+            turnController.onTurnPrepare -= SwitchObjects;
         }
 
         protected virtual void SwitchObjects()
