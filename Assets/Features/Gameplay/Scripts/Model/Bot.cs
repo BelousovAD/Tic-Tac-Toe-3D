@@ -60,40 +60,40 @@
 
         protected async virtual void MakeMoveAsync()
         {
-            await Task.Delay(TimeSpan.FromSeconds(WAITING_SECONDS));
-            MakeMove();
+            if (CheckAccessToTurn())
+            {
+                await Task.Delay(TimeSpan.FromSeconds(WAITING_SECONDS));
+                MakeMove();
+            }
         }
 
         protected virtual void MakeMove()
         {
-            if (CheckAccessToTurn())
+            BallSpawnPositionController topPriorityPositionController = null;
+            Ball ballModel = null;
+            int topPriority = 0;
+
+            foreach (var positionController in _ballSpawnPositionControllersProvider.BallSpawnPositionControllers)
             {
-                BallSpawnPositionController topPriorityPositionController = null;
-                Ball ballModel = null;
-                int topPriority = 0;
+                ballModel = _cube.GetBallAt(positionController.BallSpawnPosition.NextBallPosition);
 
-                foreach (var positionController in _ballSpawnPositionControllersProvider.BallSpawnPositionControllers)
+                if (ballModel != null)
                 {
-                    ballModel = _cube.GetBallAt(positionController.BallSpawnPosition.NextBallPosition);
-
-                    if (ballModel != null)
+                    if (ballModel.Priority > topPriority)
                     {
-                        if (ballModel.Priority > topPriority)
-                        {
-                            topPriority = ballModel.Priority;
-                            topPriorityPositionController = positionController;
-                        }
+                        topPriority = ballModel.Priority;
+                        topPriorityPositionController = positionController;
                     }
                 }
+            }
 
-                if (topPriorityPositionController != null)
-                {
-                    topPriorityPositionController.Click();
-                }
-                else
-                {
-                    Debug.LogError($"{Name} не может сделать ход. Не найдена самая приоритетная позиция спавна шара");
-                }
+            if (topPriorityPositionController != null)
+            {
+                topPriorityPositionController.Click();
+            }
+            else
+            {
+                Debug.LogError($"{Name} не может сделать ход. Не найдена самая приоритетная позиция спавна шара");
             }
         }
 
