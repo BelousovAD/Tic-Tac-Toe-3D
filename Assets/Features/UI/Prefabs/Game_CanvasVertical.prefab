@@ -290,6 +290,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e38f7dbad4ee047a4ede966f388122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnPrefixKey: Turn
+  winPostfixKey: wins
+  winKey: Win
+  loseKey: Lose
 --- !u!1 &4056544102695248116
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1455971546420777617}
   - component: {fileID: 1455971546420777619}
   - component: {fileID: 1455971546420777618}
+  - component: {fileID: 4538888241348072434}
   m_Layer: 5
   m_Name: Label
   m_TagString: Untagged
@@ -80,6 +81,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Choose the ball
+--- !u!114 &4538888241348072434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455971546420777616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d95ee9d230af2534fa467417aeca525d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizedCode: ChooseBall
+  localizedColumnName: CONTENT
 --- !u!1 &2565237589529685208
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7072833699631893797}
   - component: {fileID: 7965324418326325258}
   - component: {fileID: 7487302956602103331}
+  - component: {fileID: 5306870659078493922}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -80,6 +81,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: With friend
+--- !u!114 &5306870659078493922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133506544939823915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d95ee9d230af2534fa467417aeca525d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizedCode: AgainstPlayer
+  localizedColumnName: CONTENT
 --- !u!1 &3328143969757914719
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,6 +106,7 @@ GameObject:
   - component: {fileID: 3328143969757914704}
   - component: {fileID: 3328143969757914706}
   - component: {fileID: 3328143969757914705}
+  - component: {fileID: 213720763728873133}
   m_Layer: 5
   m_Name: Label
   m_TagString: Untagged
@@ -160,6 +176,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Choose play mode
+--- !u!114 &213720763728873133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3328143969757914719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d95ee9d230af2534fa467417aeca525d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizedCode: ChoosePlayMode
+  localizedColumnName: CONTENT
 --- !u!1 &3392224356154942305
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,6 +201,7 @@ GameObject:
   - component: {fileID: 5474275381911381721}
   - component: {fileID: 472466024596546243}
   - component: {fileID: 1382642537000261150}
+  - component: {fileID: 4373454206254785306}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -240,6 +271,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u041F\u0440\u043E\u0442\u0438\u0432 \u043A\u043E\u043C\u043F\u044C\u044E\u0442\u0435\u0440\u0430"
+--- !u!114 &4373454206254785306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3392224356154942305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d95ee9d230af2534fa467417aeca525d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizedCode: AgainstComputer
+  localizedColumnName: CONTENT
 --- !u!1 &7150968189817486941
 GameObject:
   m_ObjectHideFlags: 0
