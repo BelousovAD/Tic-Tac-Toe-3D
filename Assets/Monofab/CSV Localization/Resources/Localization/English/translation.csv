@@ -1,0 +1,17 @@
+CODE,CONTENT
+ChooseBall,Choose the ball
+ChoosePlayMode,Choose play mode
+AgainstPlayer,Against a player
+AgainstComputer,Against a computer
+Play,Play
+GameMenu,Game menu
+NewGame,New game
+MainMenu,Main menu
+White,White
+Black,Black
+Win,Win
+wins,wins
+Lose,Lose
+Turn,Turn
+Bot,Computer
+Player,Player
