@@ -11,16 +11,16 @@
     [RequireComponent(typeof(Text))]
     public class TurnLabelView : MonoBehaviour
     {
-        #region Constants
-
-        protected const string TURN_PREFIX = "Turn: ";
-        protected const string WIN_POSTFIX = " wins!";
-        protected const string WIN = "Win!";
-        protected const string LOSE = "Lose!";
-
-        #endregion
-
         #region Properties
+
+        [SerializeField]
+        protected string turnPrefixKey = string.Empty;
+        [SerializeField]
+        protected string winPostfixKey = string.Empty;
+        [SerializeField]
+        protected string winKey = string.Empty;
+        [SerializeField]
+        protected string loseKey = string.Empty;
 
         protected Text textField = default;
         protected GameSettings gameSettings = default;
@@ -43,6 +43,7 @@
             gameStateController.onStateChanged += UpdateView;
             turnController = _turnController;
             turnController.onTurnPrepare += UpdateView;
+            LocalizationManager.Instance.AddFunctionToChangeEvent(UpdateView);
             UpdateView();
         }
 
@@ -50,17 +51,32 @@
         {
             gameStateController.onStateChanged -= UpdateView;
             turnController.onTurnPrepare -= UpdateView;
+
+            if (LocalizationManager.Instance != null)
+            {
+                LocalizationManager.Instance.RemoveFunctionFromChangeEvent(UpdateView);
+            }
         }
 
         protected virtual void UpdateView()
         {
+            string currentPlayerName = turnController.CurrentPlayer.Name;
+
             textField.text = gameStateController.CurrentState.StateType switch
             {
-                GameStateType.CheckStatus=> string.Empty,
-                GameStateType.WaitForTurn => TURN_PREFIX + turnController.CurrentPlayer.Name,
-                GameStateType.Win => gameSettings.GameMode == GameMode.WithFriend? turnController.CurrentPlayer.Name + WIN_POSTFIX : WIN,
-                GameStateType.Lose => LOSE,
-                _ => string.Empty,
+                GameStateType.CheckStatus
+                    => string.Empty,
+                GameStateType.WaitForTurn
+                    => LocalizationManager.Instance.GetStringFromCode(turnPrefixKey) + ": "
+                    + LocalizationManager.Instance.GetStringFromCode(currentPlayerName, currentPlayerName),
+                GameStateType.Win
+                    => gameSettings.GameMode == GameMode.WithFriend
+                    ? LocalizationManager.Instance.GetStringFromCode(currentPlayerName, currentPlayerName) + " " + LocalizationManager.Instance.GetStringFromCode(winPostfixKey) + "!"
+                    : LocalizationManager.Instance.GetStringFromCode(winKey) + "!",
+                GameStateType.Lose
+                    => LocalizationManager.Instance.GetStringFromCode(loseKey) + "!",
+                _
+                    => string.Empty,
             };
         }
 
