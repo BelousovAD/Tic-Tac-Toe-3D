@@ -133,9 +133,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 257
+        y: 256
         width: 256
-        height: 255
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,9 +154,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 257
+        y: 256
         width: 256
-        height: 255
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,9 +195,9 @@ TextureImporter:
       name: Menu
       rect:
         serializedVersion: 2
-        x: 257
+        x: 256
         y: 128
-        width: 127
+        width: 128
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -216,9 +216,9 @@ TextureImporter:
       name: Arrow
       rect:
         serializedVersion: 2
-        x: 257
+        x: 256
         y: 0
-        width: 127
+        width: 128
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -297,13 +297,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SliderFill
+      name: Language
       rect:
         serializedVersion: 2
-        x: 512
-        y: 112
-        width: 45
-        height: 260
+        x: 514
+        y: 127
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -354,9 +354,9 @@ TextureImporter:
       BallWhite: -647138881
       ButtonCircle: 333895923
       ButtonEllipse: 1985577006
+      Language: 211447970
       Menu: -1754242803
       Settings: -1332471386
-      SliderFill: 211447970
       SliderHandle: 162735780
       SpriteTexture_4: 1117485007
       SpriteTexture_5: 1864825039
