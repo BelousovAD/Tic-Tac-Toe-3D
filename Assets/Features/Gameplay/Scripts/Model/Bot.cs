@@ -1,8 +1,6 @@
 ﻿namespace TicTacToe3D.Features.Gameplay
 {
-    using System;
-    using System.Collections;
-    using System.Threading.Tasks;
+    using Cysharp.Threading.Tasks;
     using UnityEngine;
 
     /// <summary>
@@ -12,7 +10,7 @@
     {
         #region Constants
 
-        private const int WAITING_SECONDS = 2;
+        private const int WAITING_MILLISECONDS = 2000;
 
         #endregion
 
@@ -62,7 +60,7 @@
         {
             if (CheckAccessToTurn())
             {
-                await Task.Delay(TimeSpan.FromSeconds(WAITING_SECONDS));
+                await UniTask.Delay(WAITING_MILLISECONDS, true);
                 MakeMove();
             }
         }
