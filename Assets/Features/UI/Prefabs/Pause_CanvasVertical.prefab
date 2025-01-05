@@ -242,7 +242,6 @@ GameObject:
   - component: {fileID: 807188401976370019}
   - component: {fileID: 807188401976370016}
   - component: {fileID: 807188401976370017}
-  - component: {fileID: 807188401976370018}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -268,10 +267,10 @@ RectTransform:
   m_Father: {fileID: 8392449911392038801}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.2, y: 0.3}
-  m_AnchorMax: {x: 0.8, y: 0.7}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 648, y: 762.3529}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &807188401976370016
 CanvasRenderer:
@@ -311,20 +310,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &807188401976370018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 807188401976370020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AspectMode: 1
-  m_AspectRatio: 0.85
 --- !u!1 &807188402296992612
 GameObject:
   m_ObjectHideFlags: 0

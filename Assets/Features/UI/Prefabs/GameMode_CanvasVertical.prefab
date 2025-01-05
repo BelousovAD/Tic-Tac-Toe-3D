@@ -80,7 +80,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: With friend
+  m_Text: 
 --- !u!114 &5306870659078493922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,7 +270,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041F\u0440\u043E\u0442\u0438\u0432 \u043A\u043E\u043C\u043F\u044C\u044E\u0442\u0435\u0440\u0430"
+  m_Text: 
 --- !u!114 &4373454206254785306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,6 +647,8 @@ MonoBehaviour:
   textFields:
   - {fileID: 7487302956602103331}
   - {fileID: 1382642537000261150}
+  canvasScaler: {fileID: 312261336311855533}
+  canvas: {fileID: 7550335320010967537}
 --- !u!1 &8893898391593300907
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,7 +1035,6 @@ GameObject:
   - component: {fileID: 8893898393148922170}
   - component: {fileID: 8893898393148922173}
   - component: {fileID: 8893898393148922172}
-  - component: {fileID: 8893898393148922171}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -1059,10 +1060,10 @@ RectTransform:
   m_Father: {fileID: 8354118144330156793}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.2, y: 0.3}
-  m_AnchorMax: {x: 0.8, y: 0.7}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 648, y: 762.3529}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8893898393148922173
 CanvasRenderer:
@@ -1102,17 +1103,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8893898393148922171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8893898393148922169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AspectMode: 1
-  m_AspectRatio: 0.85
