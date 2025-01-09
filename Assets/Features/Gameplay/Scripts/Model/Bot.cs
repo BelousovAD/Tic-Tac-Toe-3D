@@ -1,6 +1,7 @@
 ﻿namespace TicTacToe3D.Features.Gameplay
 {
     using Cysharp.Threading.Tasks;
+    using System.Collections.Generic;
     using UnityEngine;
 
     /// <summary>
@@ -67,7 +68,7 @@
 
         protected virtual void MakeMove()
         {
-            BallSpawnPositionController topPriorityPositionController = null;
+            List<BallSpawnPositionController> topPriorityPositionControllers = new();
             Ball ballModel = null;
             int topPriority = 0;
 
@@ -77,17 +78,22 @@
 
                 if (ballModel != null)
                 {
-                    if (ballModel.Priority > topPriority)
+                    if (ballModel.Priority == topPriority)
+                    {
+                        topPriorityPositionControllers.Add(positionController);
+                    }
+                    else if (ballModel.Priority > topPriority)
                     {
                         topPriority = ballModel.Priority;
-                        topPriorityPositionController = positionController;
+                        topPriorityPositionControllers.Clear();
+                        topPriorityPositionControllers.Add(positionController);
                     }
                 }
             }
 
-            if (topPriorityPositionController != null)
+            if (topPriorityPositionControllers.Count > 0)
             {
-                topPriorityPositionController.Click();
+                topPriorityPositionControllers[Random.Range(0, topPriorityPositionControllers.Count)].Click();
             }
             else
             {
