@@ -2,7 +2,7 @@ CODE,CONTENT
 ChooseBall,Choose the ball
 ChoosePlayMode,Choose play mode
 AgainstPlayer,Against a player
-AgainstComputer,Against a computer
+AgainstComputer,Against an AI
 Play,Play
 GameMenu,Game menu
 NewGame,New game
@@ -13,5 +13,5 @@ Win,Win
 wins,wins
 Lose,Lose
 Turn,Turn
-Bot,Computer
+Bot,AI
 Player,Player
