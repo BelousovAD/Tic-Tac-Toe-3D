@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 8688225742050662745}
   - component: {fileID: 8688225742050662744}
   - component: {fileID: 8581901695473474575}
+  - component: {fileID: 1690379427818778488}
   m_Layer: 5
   m_Name: OverlayButton
   m_TagString: Untagged
@@ -258,7 +259,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8688225742050662742}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1690379427818778488}
+        m_TargetAssemblyTypeName: YG.EventsYG2, Assembly-CSharp
+        m_MethodName: _InterstitialAdvShow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &8688225742050662744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,8 +298,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e999f96650a80d44bbbe76cfab70b46e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  needCloseCurrent: 0
+  needCloseCurrent: 1
   windowToOpenID: {fileID: 11400000, guid: af0075832af72ed43b290fbabc4930be, type: 2}
+--- !u!114 &1690379427818778488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8688225742050662746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 341f31e995335eb49bcb5f79b009a4cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &8688225742213515961
 GameObject:
   m_ObjectHideFlags: 0
