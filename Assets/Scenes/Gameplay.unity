@@ -636,6 +636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _referenceAspect: {x: 9, y: 16}
+  _centerOfGameArea: 2.85
 --- !u!1 &1187278364
 GameObject:
   m_ObjectHideFlags: 0
