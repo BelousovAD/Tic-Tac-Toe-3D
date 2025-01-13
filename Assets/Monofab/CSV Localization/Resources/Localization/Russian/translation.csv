@@ -1,0 +1,17 @@
+CODE,CONTENT
+ChooseBall,Выберите шар
+ChoosePlayMode,Выберите игровой режим
+AgainstPlayer,Против игрока
+AgainstComputer,Против ИИ
+Play,Играть
+GameMenu,Игровое меню
+NewGame,Новая игра
+MainMenu,Главное меню
+White,Белые
+Black,Чёрные
+Win,Победа
+wins,победили
+Lose,Поражение
+Turn,Ход
+Bot,ИИ
+Player,Игрок
