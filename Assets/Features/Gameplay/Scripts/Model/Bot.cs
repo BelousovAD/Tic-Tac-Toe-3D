@@ -1,8 +1,7 @@
 ﻿namespace TicTacToe3D.Features.Gameplay
 {
-    using System;
-    using System.Collections;
-    using System.Threading.Tasks;
+    using Cysharp.Threading.Tasks;
+    using System.Collections.Generic;
     using UnityEngine;
 
     /// <summary>
@@ -12,7 +11,7 @@
     {
         #region Constants
 
-        private const int WAITING_SECONDS = 2;
+        private const int WAITING_MILLISECONDS = 2000;
 
         #endregion
 
@@ -62,14 +61,14 @@
         {
             if (CheckAccessToTurn())
             {
-                await Task.Delay(TimeSpan.FromSeconds(WAITING_SECONDS));
+                await UniTask.Delay(WAITING_MILLISECONDS, true);
                 MakeMove();
             }
         }
 
         protected virtual void MakeMove()
         {
-            BallSpawnPositionController topPriorityPositionController = null;
+            List<BallSpawnPositionController> topPriorityPositionControllers = new();
             Ball ballModel = null;
             int topPriority = 0;
 
@@ -79,17 +78,22 @@
 
                 if (ballModel != null)
                 {
-                    if (ballModel.Priority > topPriority)
+                    if (ballModel.Priority == topPriority)
+                    {
+                        topPriorityPositionControllers.Add(positionController);
+                    }
+                    else if (ballModel.Priority > topPriority)
                     {
                         topPriority = ballModel.Priority;
-                        topPriorityPositionController = positionController;
+                        topPriorityPositionControllers.Clear();
+                        topPriorityPositionControllers.Add(positionController);
                     }
                 }
             }
 
-            if (topPriorityPositionController != null)
+            if (topPriorityPositionControllers.Count > 0)
             {
-                topPriorityPositionController.Click();
+                topPriorityPositionControllers[Random.Range(0, topPriorityPositionControllers.Count)].Click();
             }
             else
             {

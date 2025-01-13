@@ -414,6 +414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _referenceAspect: {x: 9, y: 16}
+  _centerOfGameArea: 1.44
 --- !u!1001 &1356096677
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,6 +1,5 @@
 ﻿namespace TicTacToe3D.Features.UI
 {
-    using System;
     using UnityEngine;
 
     /// <summary>
@@ -8,12 +7,18 @@
     /// </summary>
     public class CameraPosition : MonoBehaviour
     {
+        // NOTE: Все значения подобраны методом эксперимента...
+
         #region Properties
 
         [SerializeField]
         private Vector2 _referenceAspect = new Vector2(9, 16);
-        private Vector3 _defaultPosition = new Vector3(0f, Mathf.Tan(Mathf.PI / 4.5f) * 8f + 1.44f, -8f);
-        private Vector3 _defaultRotation = new Vector3(40, 0, 0);
+        [SerializeField]
+        private float _centerOfGameArea = 2.88f;
+        
+        private Vector3 _defaultRotation = new(30, 0, 0);
+        private float _diagonalOfBase = 3.6f * Mathf.Sqrt(2f);
+        private Vector3 _defaultPosition = Vector3.zero;
 
         #endregion
 
@@ -22,6 +27,7 @@
         protected virtual void OnEnable()
         {
             Canvas.preWillRenderCanvases += SetPosition;
+            CalculateDefaultPosition();
             SetPosition();
         }
 
@@ -43,8 +49,15 @@
         {
             Vector2 screenSize = new(Display.main.renderingWidth, Display.main.renderingHeight);
 
-            float scaleFactor = 1f / MathF.Min(1f, screenSize.x / screenSize.y * _referenceAspect.y / _referenceAspect.x);
+            float scaleFactor = 1f / Mathf.Min(1.3f, screenSize.x / screenSize.y * _referenceAspect.y / _referenceAspect.x);
             return scaleFactor;
+        }
+
+        private void CalculateDefaultPosition()
+        {
+            // NOTE: Расчёты позиции камеры верны только при угле обзора равном 60 градусов
+            _defaultPosition.z = -_diagonalOfBase * Mathf.Sqrt(3f) / 1.1f;
+            _defaultPosition.y = Mathf.Tan(_defaultRotation.x * Mathf.Deg2Rad) * Mathf.Abs(_defaultPosition.z) + _centerOfGameArea;
         }
 
         #endregion

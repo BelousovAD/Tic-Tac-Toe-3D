@@ -2,7 +2,7 @@ CODE,CONTENT
 ChooseBall,Выберите шар
 ChoosePlayMode,Выберите игровой режим
 AgainstPlayer,Против игрока
-AgainstComputer,Против компьютера
+AgainstComputer,Против ИИ
 Play,Играть
 GameMenu,Игровое меню
 NewGame,Новая игра
@@ -13,5 +13,5 @@ Win,Победа
 wins,победили
 Lose,Поражение
 Turn,Ход
-Bot,Компьютер
+Bot,ИИ
 Player,Игрок
